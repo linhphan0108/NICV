@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
+    // Network security configuration
+    // reference --> https://developer.android.com/training/articles/security-config
+
+    //for app-wide customization
+    //there is 0 or 1 base-config declaration
+    <base-config>
+        // cleartext traffic applies only to apps that target Android 8.1 (API level 27) or lower.
+        // Starting with Android 9 (API level 28), cleartext support is disabled by default.
+        <trust-anchors cleartextTrafficPermitted="true">
+            //trust additional CAs not trusted by the system
+            // a raw resource ID pointing to a file containing X.509 certificates.
+            // Certificates must be encoded in DER or PEM format.
+            // In the case of PEM certificates, the file must not contain extra non-PEM data such as comments.
+<!--            <certificates src="@raw/extracas"/>-->
+            // "system" for the pre-installed system CA certificates
+            <certificates src="system"/>
+            // "user" for user-added CA certificates
+<!--            <certificates src="user" />-->
+        </trust-anchors>
+    </base-config>
+
+    //domain-config
+    //we could declare as many domain-config as we want to
+    //to allow connections to your host which uses a self-signed SSL certificate
+    //or to a host whose SSL certificate is issued by a non-public CA which you trust,
+    //such as your company's internal CA.
+    <domain-config>
+        <domain includeSubdomains="true">api.openweathermap.org</domain>
+<!--        <trust-anchors>-->
+<!--            //the self-signed or non-public CA certificate, in PEM or DER format, to res/raw/my_ca.-->
+<!--&lt;!&ndash;            <certificates src="@raw/my_ca"/>&ndash;&gt;-->
+<!--        </trust-anchors>-->
+
+        //sub domain
+<!--        <domain-config cleartextTrafficPermitted="false">-->
+<!--            <domain includeSubdomains="true">secure.example.com</domain>-->
+<!--        </domain-config>-->
+
+        //pinning
+        // expiration is The date, in yyyy-MM-dd format, on which the pins expire, thus disabling pinning.
+        // If the attribute is not set, then the pins do not expire.
+        // Expiration helps prevent connectivity issues in apps which do not get updates to their pin set,
+        //such as when the user disables app updates.
+        <pin-set expiration="2023-01-01">
+            <pin digest="SHA-256">axmGTWYycVN5oCjh3GJrxWVndLSZjypDO6evrHMwbXg=</pin>
+            <!-- backup pin -->
+            <pin digest="SHA-256">4a6cPehI7OG6cuDZka5NDZ7FR8a60d3auda+sKfg4Ng=</pin>
+            <pin digest="SHA-256">x4QzPSC810K5/cMjb05Qm4k3Bw5zBn4lTdO/nEW/Td4=</pin>
+        </pin-set>
+    </domain-config>
+
+    //Configure CAs for debugging
+    //there is 0 or 1 debug-overrides declaration
+<!--    <debug-overrides>-->
+<!--        <trust-anchors>-->
+<!--             <certificates src="system"/>-->
+<!--            <certificates src="user" />-->
+<!--&lt;!&ndash;            <certificates src="@raw/debug_cas"/>&ndash;&gt;-->
+<!--        </trust-anchors>-->
+<!--    </debug-overrides>-->
+</network-security-config>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.linhphan.presentation.feature.home.viewmodel.ItemForecastViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:onClick="@{(v)-> viewModel.onItemClicked(v)}"
+        >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="@{viewModel.data.date}"
+            app:layout_constraintStart_toEndOf="@+id/txt_date_label"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tue, 10 Mar 2020" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_avg_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="@{viewModel.data.avgTemp}"
+            app:layout_constraintStart_toEndOf="@+id/txt_avg_temp_label"
+            app:layout_constraintTop_toTopOf="@+id/txt_avg_temp_label"
+            tools:text="20\u2103" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="@{viewModel.data.pressure}"
+            app:layout_constraintStart_toEndOf="@+id/txt_pressure_label"
+            app:layout_constraintTop_toTopOf="@+id/txt_pressure_label"
+            tools:text="1031" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="@{viewModel.data.humidity}"
+            app:layout_constraintStart_toEndOf="@+id/txt_humidity_label"
+            app:layout_constraintTop_toTopOf="@+id/txt_humidity_label"
+            tools:text="71%" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="@{viewModel.data.desc}"
+            app:layout_constraintStart_toEndOf="@+id/txt_desc_label"
+            app:layout_constraintTop_toTopOf="@+id/txt_desc_label"
+            tools:text="light rain" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

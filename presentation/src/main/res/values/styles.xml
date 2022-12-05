@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorOnSecondary</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:backgroundTint"></item>
+    </style>
+</resources>

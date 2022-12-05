@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Weather Forecast</string>
+    <string name="lp_hint_enter_city">enter a city name (at least 3 letters)</string>
+    <string name="lp_label_get_weather">Get Weather</string>
+    <string name="lp_text_date">Date: %s</string>
+    <string name="lp_text_avg_temp">Average temperature: %s</string>
+    <string name="lp_text_pressure">Pressure: %s</string>
+    <string name="lp_text_humidity">Humidity: %s</string>
+    <string name="lp_text_desc">Description: %s</string>
+    <string name="lp_message_error_min_length_require">the city name must be at least 3 letters</string>
+    <string name="lp_message_empty_data">Oop!\nno forecasts found</string>
+    <string name="lp_message_error_holder">Oop!\nsomething went wrong\n%s</string>
+    <string name="lp_label_ok">OK</string>
+    <string name="lp_title_popup_error">Oops!</string>
+    <string name="lp_message_error_no_network_connection">Your network connection seems to be unstable. Please use WiFi or move to an area with better network quality</string>
+    <string name="lp_message_error_rooted_device">We really sorry that, for protecting users\' data, we don\'t devices that have rooted.\nPlease try on another device.</string>
+    <string name="lp_sample_text">the text will be look like this.\ndrag the slider to left or right to decrease or increase the text size</string>
+    <string name="lp_label_apply">apply</string>
+    <string name="lp_label_percent_holder">%d%%</string>
+
+    <string name="lp_talkback_get_weather_button">get the forecasts</string>
+    <string name="lp_talkback_text_size_popup">Change text size popup</string>
+    <string name="lp_talkback_current_text_size">current text scale is %d%%</string>
+</resources>

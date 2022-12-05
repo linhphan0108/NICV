@@ -1,0 +1,130 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+apply from: '../jacoco.gradle'
+
+// Creates a variable called keystorePropertiesFile, and initializes it to the
+// keystore.properties file.
+def keystorePropertiesFile = project.rootProject.file("keystore.properties")
+// Initializes a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+// Loads the keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdk Configs.compileSdkVersion
+
+    defaultConfig {
+        applicationId Configs.applicationId
+        minSdk Configs.minSdkVersion
+        targetSdk Configs.targetSdkVersion
+        versionCode Configs.versionCode
+        versionName Configs.versionName
+
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.linhphan.presentation.util.HiltAndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['RELEASE_KEY_ALIAS']
+            keyPassword keystoreProperties['RELEASE_KEY_PASSWORD']
+            storeFile file(keystoreProperties['RELEASE_STORE_FILE'])
+            storePassword keystoreProperties['RELEASE_STORE_PASSWORD']
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+    testOptions {
+        animationsDisabled true
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+}
+
+dependencies {
+    implementation Androidx.coreKtx
+    implementation Androidx.appCompat
+    implementation Androidx.material
+    implementation Androidx.constraintLayout
+    implementation Androidx.androidCoroutines
+    implementation Androidx.lifecycleRuntime
+    implementation Androidx.viewModelLifecycle
+
+    // Dependencies for local unit tests
+    testImplementation TestDependencies.junit4
+    testImplementation TestDependencies.kotlinCoroutinesTest
+    testImplementation TestDependencies.truth
+    testImplementation TestDependencies.robolectric
+    testImplementation TestDependencies.mockitoCore
+    testImplementation TestDependencies.mockitoInline
+    testImplementation TestDependencies.hamcrest
+
+    // AndroidX Test - JVM testing
+    testImplementation TestDependencies.androidxCoreKtx
+    testImplementation TestDependencies.androidxCoreTesting
+    testImplementation TestDependencies.androidxExtJunit
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation TestDependencies.androidxExtJunit
+    androidTestImplementation TestDependencies.androidxCoreKtx
+    androidTestImplementation TestDependencies.androidxTestRunner
+    androidTestImplementation TestDependencies.androidxTestRule
+    androidTestImplementation TestDependencies.androidxCoreTesting
+    androidTestImplementation TestDependencies.truth
+    androidTestImplementation TestDependencies.mockitoDexMark
+    androidTestImplementation (TestDependencies.espresso){
+        exclude group:"org.hamcrest"
+    }
+    androidTestImplementation TestDependencies.hiltAndroidTest
+    kaptAndroidTest Others.hiltAndroidCompiler
+    debugImplementation TestDependencies.fragmentTest
+    androidTestImplementation TestDependencies.hamcrest
+    implementation TestDependencies.espressoIdlingResource
+
+    //dependency injection
+    implementation Others.hiltAndroid
+    kapt Others.hiltAndroidCompiler
+    testImplementation TestDependencies.hiltAndroidTest
+    kaptTest Others.hiltAndroidCompiler
+    androidTestImplementation TestDependencies.hiltAndroidTest
+
+    // scalable size unit
+    implementation(Others.sdp)
+    implementation(Others.ssp)
+
+    implementation(Others.cryptoSharePreference)
+    implementation(Androidx.fragmentKtx)
+
+    implementation project(":common")
+    implementation project(":domain")
+    implementation project(":data")
+}

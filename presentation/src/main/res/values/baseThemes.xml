@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- base theme-->
+    <style name="Base.Theme.LP" parent="Platform.Theme.LP">
+        <!--        global fonts used in whole app.-->
+        <item name="android:textViewStyle">@style/MyTextAppearance</item>
+        <item name="android:buttonStyle">@style/MyButtonStyle</item>
+    </style>
+    <!-- end base theme-->
+</resources>

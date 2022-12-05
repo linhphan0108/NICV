@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- platform theme-->
+    <style name="Platform.Theme.LP" parent="Platform.V23.Theme.LP" />
+    <style name="Platform.V23.Theme.LP" parent="Platform.V21.Theme.LP">
+        <!-- Attributes which are only available from API 23 -->
+    </style>
+</resources>

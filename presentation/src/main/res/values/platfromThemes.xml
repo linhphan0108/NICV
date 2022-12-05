@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- platform theme-->
+    <style name="Platform.Theme.LP" parent="Platform.V21.Theme.LP" />
+    <style name="Platform.V21.Theme.LP" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!--        <item name="android:fontFamily">?attr/blsFontRegular</item>-->
+    </style>
+    <!-- end platform theme-->
+</resources>
